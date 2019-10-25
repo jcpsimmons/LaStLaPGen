@@ -14,6 +14,7 @@ LaStLaPGen automates most of this process, here's an overview of what it does:
 - Generates all rows and columns in HTML (each with a unique class name for easy styling later)
 - Adds HTML for linked images in the areas where that needs to be done
 - Optionally adds a YouTube video thumbnail with a jQuery-handled popup modal, complete with YouTube link
+- Prettifies and saves HTML as a file with the same name as the project
 
 ---
 
