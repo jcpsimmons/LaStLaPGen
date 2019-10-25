@@ -4,8 +4,6 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import os
 
-PROJECT_NAME = ""
-
 
 def fileHandling():
     PROJECT_NAME = input('\nWhat should I name the project directory? ')
@@ -24,6 +22,7 @@ def fileHandling():
         os.system("mv *.jpeg img")
     else:
         print("\nI didn't find any images - continuing")
+    return(PROJECT_NAME)
 
 
 def locationParse(strLocation):
@@ -78,11 +77,13 @@ def mappingSequence():
 
     if hasVideo:
         finalHTML = finalHTML + htmlSnippets.videoModal
-    finalHTML = htmlSnippets.css + "<div class='x'>" + finalHTML + "</div>"
+        finalHTML = htmlSnippets.cssWithVideoModal + "<div class='x'>" + finalHTML + "</div>"
+    else:
+        finalHTML = htmlSnippets.css + "<div class='x'>" + finalHTML + "</div>"
     return(finalHTML)
 
 
-fileHandling()
+PROJECT_NAME = fileHandling()
 vdom = mappingSequence()
 # prettify the HTML
 vdom = BeautifulSoup(vdom, "html.parser")
