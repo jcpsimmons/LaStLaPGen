@@ -20,8 +20,9 @@ class HTMLObject:
         self.imageSrc = "/globalassets/images/lp/{}/{}/TK_IMAGE.JPG".format(
             month, str(datetime.now().year))
 
-    def videoTrue(self, alt):
+    def videoTrue(self, alt, link):
         self.isVideo = True
+        self.videoLink = link
         self.alt = alt
 
     def renderComponent(self):
@@ -31,8 +32,8 @@ class HTMLObject:
                 self.imageSrc, self.alt)
         # Video code - will need to insert modal later
         if self.isVideo:
-            self.html = "<div class='videoModal'><div id='mobile_modal' data-toggle='modal' data-target='#modal-video_01' tabindex='0' data-theVideo='https://www.youtube.com/embed/ybo0J2A5umk'><img class='img-responsive video-thumb' src='/TK-VIDEO-THUMB.JPG' alt='{}'></div></div>".format(
-                self.alt)
+            self.html = "<div class='videoModal'><div id='mobile_modal' data-toggle='modal' data-target='#modal-video_01' tabindex='0' data-theVideo='{}'><img class='img-responsive video-thumb' src='/TK-VIDEO-THUMB.JPG' alt='{}'></div></div>".format(
+                self.videoLink, self.alt)
         # Nest it all in a div - No image or video? That's fine, it'll make a div with nothing in it!
         self.html = "<div class='{}{}'>{}</div>".format(
             str(self.row), str(self.column), self.html)

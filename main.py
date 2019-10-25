@@ -39,7 +39,8 @@ def mappingSequence():
         insertLocation = input(
             'What is the location of the video in row/col format, e.g. 1,3? ')
         insertLocation = locationParse(insertLocation)
-        altText = input('Enter alt text for this image: ')
+        altText = input('Enter alt text for the thumbnail image: ')
+        link = input('Enter embed link for the YT video: ')
         vdom[insertLocation[0]][insertLocation[1]].videoTrue(altText)
 
     # Assemble HTML
@@ -56,8 +57,6 @@ def mappingSequence():
     if hasVideo:
         finalHTML = finalHTML + htmlSnippets.videoModal
     finalHTML = htmlSnippets.css + "<div class='x'>" + finalHTML + "</div>"
-
-    print(finalHTML)
     return(finalHTML)
 
 
@@ -66,5 +65,9 @@ vdom = mappingSequence()
 vdom = BeautifulSoup(vdom)
 vdom = vdom.prettify()
 
-with open('x.html', 'w') as file:
-    file.write(vdom)
+try:
+    with open('x.html', 'w') as file:
+        file.write(vdom)
+    print("Saved file as x.html")
+except Exception as e:
+    print(e)
