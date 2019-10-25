@@ -77,7 +77,8 @@ def mappingSequence():
 
     if hasVideo:
         finalHTML = finalHTML + htmlSnippets.videoModal
-        finalHTML = htmlSnippets.cssWithVideoModal + "<div class='x'>" + finalHTML + "</div>"
+        finalHTML = htmlSnippets.cssWithVideoModal + \
+            "<div class='x'>" + finalHTML + "</div>"
     else:
         finalHTML = htmlSnippets.css + "<div class='x'>" + finalHTML + "</div>"
     return(finalHTML)
