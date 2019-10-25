@@ -20,7 +20,7 @@ class HTMLObject:
         self.imageSrc = "/globalassets/images/lp/{}/{}/TK_IMAGE.JPG".format(
             month, str(datetime.now().year))
 
-    def videoTrue(self, alt, link):
+    def setVideo(self, alt, link):
         self.isVideo = True
         self.videoLink = link
         self.alt = alt
