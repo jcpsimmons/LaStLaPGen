@@ -12,7 +12,7 @@ def fileHandling():
     os.system('mkdir ' + PROJECT_NAME)
     os.chdir(PROJECT_NAME)
     blank = input(
-        '\nMade directory \"{}\". Move your image files into the folder and then press enter. Just press enter if there are no images to optimize.'.format(PROJECT_NAME))
+        '\nMade directory \"{}\". Move your image files into the folder created on your and then press enter. Just press enter if there are no images to optimize.'.format(PROJECT_NAME))
     if len(os.listdir()) > 0:
         os.system("mkdir img")
         # optimize files
@@ -57,6 +57,7 @@ def mappingSequence():
     # VIDEO
     isVideo = int(input('\nIs there a video (1 yes, 0 no)? '))
     if isVideo:
+        hasVideo = True
         insertLocation = input(
             '\nWhat is the location of the video in row/col format, e.g. 1,3? ')
         insertLocation = locationParse(insertLocation)
@@ -69,6 +70,9 @@ def mappingSequence():
     for row in range(len(vdom)):
         columnCode = ""
         for col in range(len(vdom[row])):
+            flexBasis = input(
+                '\nSet flex basis percentage for row {} column {}. (Enter for 50% default): '.format(str(row+1), str(col + 1)))
+            vdom[row][col].setFlexBasis(flexBasis)
             columnCode = columnCode + \
                 vdom[row][col].renderComponent()
         rowCode = "<div class='container {}'>{}</div>".format(

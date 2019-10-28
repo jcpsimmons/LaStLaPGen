@@ -10,6 +10,7 @@ class HTMLObject:
         self.altText = ""
         self.isImage = False
         self.imageSrc = ""
+        self.flexBasis = 50
 
     def setImage(self, alt):
         self.isImage = True
@@ -25,6 +26,10 @@ class HTMLObject:
         self.videoLink = link
         self.alt = alt
 
+    def setFlexBasis(self, flexBasis):
+        if flexBasis != '':
+            self.flexBasis = flexBasis
+
     def renderComponent(self):
         # Image code
         if self.isImage:
@@ -35,6 +40,6 @@ class HTMLObject:
             self.html = "<div class='videoModal'><div id='mobile_modal' data-toggle='modal' data-target='#modal-video_01' tabindex='0' data-theVideo='{}'><img class='img-responsive video-thumb' src='/TK-VIDEO-THUMB.JPG' alt='{}'></div></div>".format(
                 self.videoLink, self.alt)
         # Nest it all in a div - No image or video? That's fine, it'll make a div with nothing in it!
-        self.html = "<div class='{}{}'>{}</div>".format(
-            str(self.row), str(self.column), self.html)
+        self.html = "<div class='{}{}' style='flex-basis:{}%;'>{}</div>".format(
+            str(self.row), str(self.column), self.flexBasis, self.html)
         return(self.html)
